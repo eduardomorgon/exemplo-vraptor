@@ -5,7 +5,9 @@
     <head>
         <title>VRaptor | Usu&aacute;rio [listagem]</title>
         <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
-        <script type="text/javascript" src="<c:url value="/js/jquery-2.0.2.min.js" />"></script> 
+        <link href="<c:url value="/css/custom-theme/jquery-ui-1.10.0.custom.css" />" rel="stylesheet">
+        <script type="text/javascript" src="<c:url value="/js/jquery-1.9.1.js" />"></script> 
+        <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.10.3.custom.js" />"></script> 
         <style>
             body {
                 padding-top: 60px;
@@ -100,15 +102,42 @@
 
         </div><!--/.fluid-container-->
         
+        <div id="dialog" title="Usuarios">
+            <table id="users" class="table table-bordered">
+                <thead>
+                    <tr class="ui-widget-header ">
+                        <th>Email</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        
         <script>
             // <![CDATA[
             function testeJson(){
-                $.getJSON("<c:url value='/usuario/usuarios.json'/>", "", function(json) {     
+                $.getJSON("<c:url value='/usuario/usuarios.json'/>", "", function(json) {   
+                    $("#users tbody tr").remove();
                     for(var i=0;i < json.list.length;i++){
-                        alert("E-mail: "+json.list[i].email+" - Nome: "+json.list[i].nome); 
+                        $( "#users tbody" ).append( "<tr>" +
+                            "<td>" + json.list[i].email + "</td>" +
+                            "<td>" + json.list[i].nome + "</td>" +
+                          "</tr>" );
                     }
                 });    
+                $( "#dialog" ).dialog( "open" );
             }
+            $(function() {
+                $( "#dialog" ).dialog({autoOpen: false,
+                                       resizable: false});
+            });
+            
+    
+    
+           
             // ]]>
         </script>
     </body>
