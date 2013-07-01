@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <tiles:insertTemplate template="/WEB-INF/jsp/template.jsp">
 
     <tiles:putAttribute name="body">
         <table class="table table-bordered" style="width: 600px;">
             <thead>
                 <tr>
-                    <th style="text-align: center;">E-mail</th>
-                    <th style="text-align: center;">Nome</th>
-                    <!--<th style="text-align: center;">Senha</th>-->
-                    <th style="text-align: center;">Editar</th>
-                    <th style="text-align: center;">Excluir</th>
+                    <th style="text-align: center;"><fmt:message key="user.email"/></th>
+                    <th style="text-align: center;"><fmt:message key="user.nome"/></th>
+                    <th style="text-align: center;"><fmt:message key="editar"/></th>
+                    <th style="text-align: center;"><fmt:message key="excluir"/></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,19 +19,18 @@
                 <tr>
                     <td>${_v.email}</td>
                     <td>${_v.nome}</td>
-                    <!--<td> {_v.senha} </td>-->
                     <td style="text-align: center;">
                         <form action="<c:url value='/usuario'/>" method="post">
                             <input type='hidden' name='_method' value='put'/>
                             <input type='hidden' name='usuario.email' value='${_v.email}'/>
-                            <input class="btn btn-mini" type="submit" value="Editar"/>
+                            <input class="btn btn-mini" type="submit" value="<fmt:message key="editar"/>"/>
                         </form>
                     </td>
                     <td style="text-align: center;">
                         <form action="<c:url value='/usuario'/>" method="post">
                             <input type='hidden' name='_method' value='delete'/>
                             <input type='hidden' name='usuario.email' value='${_v.email}'/>
-                            <input class="btn btn-mini" type="submit" value="Excluir"/>
+                            <input class="btn btn-mini" type="submit" value="<fmt:message key="excluir"/>"/>
                         </form>
                     </td>
                 </tr>

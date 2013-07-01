@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Vraptor Estudo</title>
+        <title><fmt:message key="titulo"/></title>
         <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
         <link href="<c:url value="/css/custom-theme/jquery-ui-1.10.0.custom.css" />" rel="stylesheet">
         <script type="text/javascript" src="<c:url value="/js/jquery-1.9.1.js" />"></script> 
@@ -44,7 +45,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="#">Vraptor Estudo</a>
+                    <a class="brand" href="#"><fmt:message key="titulo"/></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
@@ -84,7 +85,7 @@
             
             <!-- Rodape -->
             <div id="footer">
-                Powered by Vraptor - Tiles
+                Powered by Vraptor, Tiles, JQuery, Bootstrap
             </div>
             
         </div>

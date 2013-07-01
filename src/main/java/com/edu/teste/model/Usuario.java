@@ -5,11 +5,14 @@
 package com.edu.teste.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,6 +32,10 @@ public class Usuario implements Serializable {
 
     @Column(length = 250)
     private String senha;
+    
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    private List<Telefone> telefones;
+    
 
     /**
      * @return the email
@@ -70,6 +77,20 @@ public class Usuario implements Serializable {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the telefones
+     */
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    /**
+     * @param telefones the telefones to set
+     */
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
     }
 
     
