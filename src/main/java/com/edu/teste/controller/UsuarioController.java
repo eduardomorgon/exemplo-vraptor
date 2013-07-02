@@ -6,6 +6,7 @@ package com.edu.teste.controller;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
@@ -63,6 +64,13 @@ public class UsuarioController {
     @Get("/usuario/usuarios.json")
     public void loadJson(){
         result.use(Results.json()).from(dao.all()).exclude("senha").serialize();
+    }
+    
+    @Post("/usuario/ajax")
+    public void salvarAjax(Usuario usuario){
+        usuario.setSenha(Hashing.md5().hashString(usuario.getSenha()).toString());
+        dao.save(usuario);
+        result.use(Results.status()).ok();
     }
     
 }

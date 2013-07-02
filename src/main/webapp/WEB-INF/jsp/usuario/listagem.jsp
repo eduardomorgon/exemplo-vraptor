@@ -5,7 +5,11 @@
 <tiles:insertTemplate template="/WEB-INF/jsp/template.jsp">
 
     <tiles:putAttribute name="body">
-        <table class="table table-bordered" style="width: 600px;">
+        <br/>
+        <input class="btn btn-mini" onclick="formUser();" value="Novo Ajax"/>
+        
+        <br/>
+        <table id="tableUsers" class="table table-bordered">
             <thead>
                 <tr>
                     <th style="text-align: center;"><fmt:message key="user.email"/></th>
@@ -37,8 +41,7 @@
             </c:forEach>
         </tbody>
     </table>
-    <br/>
-    <br/>
+    
         
     <div id="dialog" title="Usuarios">
         <table id="users" class="table table-bordered">
@@ -53,6 +56,21 @@
             </tbody>
         </table>
     </div> 
+    
+    <div id="dialogFormUser" title="Cadastrar Usuarios">
+        <form id="formUsuario">
+            <fmt:message key="user.email"/>:<input type="text" name="usuario.email" value="${usuario.email}" /><br/>
+            <fmt:message key="user.nome"/>: <input type="text" name="usuario.nome" value="${usuario.nome}"/><br/>
+            <fmt:message key="user.senha"/>:<input type="password" name="usuario.senha"/><br/>
+            <c:forEach items="${usuario.telefones}" var="_v">
+                <li>${_v.telefonePk.telefone}</li>
+                <li>${_v.tipo}</li>
+            </c:forEach>
+            
+            
+                <input type="button" value="<fmt:message key="salvar"/>" onclick="salvarUser();"/>
+        </form>
+    </div>
 
    <script>
         // <![CDATA[
@@ -72,8 +90,49 @@
             $( "#dialog" ).dialog({autoOpen: false,
                                    resizable: false});
         });
+        
+       
+    
+        function salvarUser(){
+            $.ajax({
+                type: 'POST',
+                url: '<c:url value="/usuario/ajax"/>',
+                data: $("#formUsuario").serialize(),
+                success: function(data){
+                    $('#dialogFormUser').dialog('close');
+                    $.getJSON("<c:url value='/usuario/usuarios.json'/>", "", function(json) {   
+                        $("#tableUsers tbody tr").remove();
+                        $("#tableUsers").addClass("table table-bordered");
+                        for(var i=0;i < json.list.length;i++){
+                            $( "#tableUsers tbody" ).append( "<tr>" +
+                                "<td>" + json.list[i].email + "</td>" +
+                                "<td>" + json.list[i].nome + "</td>" +
+                                "<td>  <input type='submit' value='<fmt:message key='excluir'/>'/></td>"+
+                                "<td>  <input type='submit' value='<fmt:message key='editar'/>'/></td>"+
+                              "</tr>" );
+                        }
+                        $("#tableUsers td input").addClass("btn btn-mini");
+                    });    
+                }
+            });
+        }
 
-
+       function formUser() {
+           $.ajax({
+               type: 'GET',
+               url: '<c:url value="/usuario/novo"/>',
+               cache: false,
+               success: function(data){
+                    $('#dialogFormUser').dialog('open');
+               }
+           });
+           
+       }
+       
+       $(function() {
+            $("#dialogFormUser").dialog({autoOpen: false,
+                                   resizable: false});
+        });
 
 
         // ]]>
