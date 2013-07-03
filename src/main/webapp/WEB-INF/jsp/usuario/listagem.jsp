@@ -41,7 +41,7 @@
             </c:forEach>
         </tbody>
     </table>
-    
+               
         
     <div id="dialog" title="Usuarios">
         <table id="users" class="table table-bordered">
@@ -94,6 +94,7 @@
        
     
         function salvarUser(){
+            alert($("#formUsuario").serialize());
             $.ajax({
                 type: 'POST',
                 url: '<c:url value="/usuario/ajax"/>',
