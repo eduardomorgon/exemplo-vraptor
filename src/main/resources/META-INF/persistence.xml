@@ -3,7 +3,6 @@
   <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.edu.teste.model.Usuario</class>
-    <class>com.edu.teste.model.Telefone</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/demo_vraptor;create=true"/>

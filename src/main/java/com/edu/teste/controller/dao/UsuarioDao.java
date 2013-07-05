@@ -8,6 +8,11 @@ import br.com.caelum.vraptor.ioc.Component;
 import com.edu.teste.model.Usuario;
 import java.util.Collection;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 
 /**
@@ -49,12 +54,34 @@ public class UsuarioDao implements GenericDao<Usuario>{
 
     @Override
     public Boolean exists(Usuario entity) {
-        Usuario u = em.find(Usuario.class, entity.getEmail());
-        if(u == null){
+        
+        Usuario u;
+        try {
+            u = (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email")
+                    .setParameter("email", entity.getEmail())
+                    .getSingleResult();
+            } catch (NoResultException e) {
             return false;
-        }else{
-            return true;
         }
+        return true;
+    }
+    
+    public Usuario findByLogin(String user, String password) {
+        
+        try {
+            return (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha")
+                    .setParameter("email", user)
+                    .setParameter("senha", password)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+        
+    }
+
+    @Override
+    public void refresh(Usuario entity) {
+        em.refresh(entity);
     }
     
 }

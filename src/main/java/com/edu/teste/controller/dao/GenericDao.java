@@ -20,6 +20,8 @@ public interface GenericDao<T> {
 
     void save(T entity);
     
+    void refresh(T entity);
+    
     Boolean exists(T entity);
     
 }

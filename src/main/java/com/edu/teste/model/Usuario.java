@@ -25,7 +25,10 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Column
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    
+    @Column(unique = true)
     private String email;
     
     @Column
@@ -34,8 +37,8 @@ public class Usuario implements Serializable {
     @Column(length = 250)
     private String senha;
     
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Telefone> telefones;
+//    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Telefone> telefones;
     
 
     /**
@@ -80,18 +83,32 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+//    /**
+//     * @return the telefones
+//     */
+//    public List<Telefone> getTelefones() {
+//        return telefones;
+//    }
+//
+//    /**
+//     * @param telefones the telefones to set
+//     */
+//    public void setTelefones(List<Telefone> telefones) {
+//        this.telefones = telefones;
+//    }
+
     /**
-     * @return the telefones
+     * @return the id
      */
-    public List<Telefone> getTelefones() {
-        return telefones;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param telefones the telefones to set
+     * @param id the id to set
      */
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     

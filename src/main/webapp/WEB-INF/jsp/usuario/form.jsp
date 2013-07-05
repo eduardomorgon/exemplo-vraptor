@@ -6,34 +6,14 @@
 
     <tiles:putAttribute name="body">
         <form id="fomrUsuario" action="<c:url value='/usuario'/>" method="post">
+            <input type="hidden" name="usuario.id" value="${usuario.id}"/>
             <fmt:message key="user.email"/>:<input type="text" name="usuario.email" value="${usuario.email}" /><br/>
             <fmt:message key="user.nome"/>: <input type="text" name="usuario.nome" value="${usuario.nome}"/><br/>
             <fmt:message key="user.senha"/>:<input type="password" name="usuario.senha"/><br/>
             
-            <input type="button" class="btn btn-mini" value="Novo" onclick="formTelefone();"/>
-            <br/>
-            <br/>
-            <table id="tableTelefones" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;"><fmt:message key="telefone.tipo"/></th>
-                        <th style="text-align: center;"><fmt:message key="telefone.telefone"/></th>
-                        <th style="text-align: center;"><fmt:message key="editar"/></th>
-                        <th style="text-align: center;"><fmt:message key="excluir"/></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${usuario.telefones}" var="_v">
-                        <tr>
-                            <td class="tel">${_v.telefonePk.telefone}</td>
-                            <td class="tipo">${_v.tipo}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            
 
         <input type="submit" value="<fmt:message key="salvar"/>" />
-        <input type="button" value="teste Table" onclick="salvarUsuario()"/>
         </form>
              
         <div id="dialogFormTel" title="Telefones">

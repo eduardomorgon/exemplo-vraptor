@@ -6,7 +6,6 @@
 
     <tiles:putAttribute name="body">
         <br/>
-        <input class="btn btn-mini" onclick="formUser();" value="Novo Ajax"/>
         
         <br/>
         <table id="tableUsers" class="table table-bordered">

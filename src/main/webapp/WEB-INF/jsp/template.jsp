@@ -52,14 +52,18 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
-                        <p class="navbar-text pull-right">
-                            Logado como: <a href="#" class="navbar-link">Username</a>
-                        </p>
+                        <c:if test="${not empty userInfo.usuario}">
+                            <p class="navbar-text pull-right">
+                                ${userInfo.usuario.nome} - <a class="navbar-link" href="${pageContext.request.contextPath}/login/logout">Sair</a>
+                            </p>
+                        </c:if>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
         </div>
         <!-- Barra status superios -->
+        
+        
         
         <div id="geral" >
 
@@ -70,6 +74,7 @@
                         <ul class="nav nav-list">
                             <li class="nav-header">Menu</li>
                             <li class="active"><a href="#">Link</a></li>
+                            <li><a href="${pageContext.request.contextPath}/usuario"><fmt:message key="user.entity"/></a></li>
                             <li><a href="${pageContext.request.contextPath}/usuario/novo">Novo</a></li>
                             <li><a href="${pageContext.request.contextPath}/usuario/usuarios.json">Json</a></li>
                             <li><a href="#" onclick="testeJson();">Json Jquery</a></li>
