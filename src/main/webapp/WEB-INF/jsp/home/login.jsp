@@ -75,10 +75,10 @@
                         <form action="<c:url value="/home/login"/>" method="post">
                             <fieldset>
                                 <div class="clearfix">
-                                    <input type="email" placeholder="Email" name="login" required="true">
+                                    <input type="email" placeholder="Email" name="login" required="true" autofocus="true"/>
                                 </div>
                                 <div class="clearfix">
-                                    <input type="password" placeholder="Senha" name="password">
+                                    <input type="password" placeholder="Senha" name="password"/>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Entrar</button>
                             </fieldset>

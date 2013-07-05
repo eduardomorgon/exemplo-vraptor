@@ -5,16 +5,31 @@
 <tiles:insertTemplate template="/WEB-INF/jsp/template.jsp">
 
     <tiles:putAttribute name="body">
+        <style>
+            label { 
+                display:block; 
+                width:150px; 
+                float:left; 
+                font-weight: bold;
+            }
+            .divForm {
+                padding-top: 50px;
+                padding-left: 20px;
+            }
+        </style>
+        <div class="divForm"> 
         <form id="fomrUsuario" action="<c:url value='/usuario'/>" method="post">
             <input type="hidden" name="usuario.id" value="${usuario.id}"/>
-            <fmt:message key="user.email"/>:<input type="text" name="usuario.email" value="${usuario.email}" /><br/>
-            <fmt:message key="user.nome"/>: <input type="text" name="usuario.nome" value="${usuario.nome}"/><br/>
-            <fmt:message key="user.senha"/>:<input type="password" name="usuario.senha"/><br/>
-            
-            
-
-        <input type="submit" value="<fmt:message key="salvar"/>" />
+            <label for="usuario.email"><fmt:message key="user.email"/></label>
+            <input type="text" name="usuario.email" value="${usuario.email}"  required="true" title="E-mail"/><br/>
+            <label for="usuario.nome"><fmt:message key="user.nome"/></label>
+            <input type="text" name="usuario.nome" value="${usuario.nome}" required="true"/><br/>
+            <label for="usuario.senha"><fmt:message key="user.senha"/></label>
+            <input type="password" name="usuario.senha" required="true" /><br/>
+           
+            <input type="submit" value="<fmt:message key="salvar"/>" />
         </form>
+        </div>
              
         <div id="dialogFormTel" title="Telefones">
             <form id="formTel">

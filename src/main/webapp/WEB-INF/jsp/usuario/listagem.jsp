@@ -5,8 +5,17 @@
 <tiles:insertTemplate template="/WEB-INF/jsp/template.jsp">
 
     <tiles:putAttribute name="body">
+        <style>
+            .menu-novo{
+                padding-left: 10px;
+            }
+        </style>
         <br/>
-        
+        <div class="menu-novo">
+            <a href="${pageContext.request.contextPath}/usuario/novo" title="<fmt:message key="user.novo"/>">
+                <i class="icon-file"></i>
+            </a>
+        </div>
         <br/>
         <table id="tableUsers" class="table table-bordered">
             <thead>
@@ -25,14 +34,14 @@
                     <td style="text-align: center;">
                         <form action="<c:url value='/usuario'/>" method="post">
                             <input type='hidden' name='_method' value='put'/>
-                            <input type='hidden' name='usuario.email' value='${_v.email}'/>
+                            <input type='hidden' name='usuario.id' value='${_v.id}'/>
                             <input class="btn btn-mini" type="submit" value="<fmt:message key="editar"/>"/>
                         </form>
                     </td>
                     <td style="text-align: center;">
                         <form action="<c:url value='/usuario'/>" method="post">
                             <input type='hidden' name='_method' value='delete'/>
-                            <input type='hidden' name='usuario.email' value='${_v.email}'/>
+                            <input type='hidden' name='usuario.id' value='${_v.id}'/>
                             <input class="btn btn-mini" type="submit" value="<fmt:message key="excluir"/>"/>
                         </form>
                     </td>

@@ -30,12 +30,12 @@ public class UsuarioDao implements GenericDao<Usuario>{
 
     @Override
     public Collection<Usuario> all() {
-        return em.createQuery("SELECT u FROM Usuario u").getResultList();
+        return em.createQuery("SELECT u FROM Usuario u WHERE u.root <> 'S' ORDER BY u.email").getResultList();
     }
 
     @Override
     public Usuario find(Usuario entity) {
-        return em.find(Usuario.class, entity.getEmail());
+        return em.find(Usuario.class, entity.getId());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UsuarioDao implements GenericDao<Usuario>{
 
     @Override
     public void save(Usuario entity) {
-        if(exists(entity)){
+        if(entity.getId() != null){
             em.merge(entity);
         }else{
             em.persist(entity);
@@ -57,9 +57,8 @@ public class UsuarioDao implements GenericDao<Usuario>{
         
         Usuario u;
         try {
-            u = (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email")
-                    .setParameter("email", entity.getEmail())
-                    .getSingleResult();
+            u = (Usuario) em.find(Usuario.class, entity.getId());
+                    
             } catch (NoResultException e) {
             return false;
         }

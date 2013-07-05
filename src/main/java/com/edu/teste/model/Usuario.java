@@ -37,6 +37,9 @@ public class Usuario implements Serializable {
     @Column(length = 250)
     private String senha;
     
+    @Column
+    private String root;
+    
 //    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private List<Telefone> telefones;
     
@@ -109,6 +112,20 @@ public class Usuario implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the root
+     */
+    public String getRoot() {
+        return root;
+    }
+
+    /**
+     * @param root the root to set
+     */
+    public void setRoot(String root) {
+        this.root = root;
     }
 
     
