@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
     private String senha;
     
     @Column
-    private String root;
+    private String root = "N";
     
 //    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private List<Telefone> telefones;
