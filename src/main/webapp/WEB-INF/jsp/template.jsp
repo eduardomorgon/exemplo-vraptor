@@ -10,6 +10,7 @@
         <link href="<c:url value="/css/custom-theme/jquery-ui-1.10.0.custom.css" />" rel="stylesheet">
         <script type="text/javascript" src="<c:url value="/js/jquery-1.9.1.js" />"></script> 
         <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.10.3.custom.js" />"></script> 
+        <script type="text/javascript" src="<c:url value="/js/bootstrap.js" />"></script> 
         <style>
             body {
                 padding-top: 60px;

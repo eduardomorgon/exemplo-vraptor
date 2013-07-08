@@ -49,10 +49,34 @@
             </c:forEach>
         </tbody>
     </table>
+                
+    <div id="myModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Usuários</h3>
+        </div>
+        <div class="modal-body">
+            <table id="users" class="table table-bordered">
+                <thead>
+                    <tr class="ui-widget-header ">
+                        <th>Email</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
                
         
     <div id="dialog" title="Usuarios">
-        <table id="users" class="table table-bordered">
+        <table id="users_" class="table table-bordered">
             <thead>
                 <tr class="ui-widget-header ">
                     <th>Email</th>
@@ -92,7 +116,8 @@
                       "</tr>" );
                 }
             });    
-            $( "#dialog" ).dialog( "open" );
+            //$( "#dialog" ).dialog( "open" );
+            $('#myModal').modal('show');
         }
         $(function() {
             $( "#dialog" ).dialog({autoOpen: false,
