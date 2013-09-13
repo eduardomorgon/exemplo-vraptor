@@ -12,6 +12,7 @@
         <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.10.3.custom.js" />"></script> 
         <script type="text/javascript" src="<c:url value="/js/bootstrap.js" />"></script> 
         <style>
+            
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
